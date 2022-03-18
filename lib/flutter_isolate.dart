@@ -113,9 +113,9 @@ class FlutterIsolate {
     eventSubscription = _event.receiveBroadcastStream().listen((isolateId) {
       _current = FlutterIsolate._(isolateId, null, null);
       final sendPort =
-          IsolateNameServer.lookupPortByName(_current!._isolateId!)!;
+          IsolateNameServer.lookupPortByName(_current != null ? _current!._isolateId! : "")!;
       final setupReceivePort = ReceivePort();
-      IsolateNameServer.removePortNameMapping(_current!._isolateId!);
+      IsolateNameServer.removePortNameMapping(_current != null ? _current!._isolateId! : "");
       sendPort.send(<Capability?>[
         setupReceivePort.sendPort,
         Isolate.current.controlPort,
