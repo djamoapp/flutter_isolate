@@ -84,7 +84,7 @@ class FlutterIsolate {
   /// finished. This should cleanup the native components backing the isolates.
   void kill() => _isolateId != null
       ? _control.invokeMethod("kill_isolate", {"isolate_id": _isolateId})
-      : Isolate.current.kill();
+      : Isolate.current.kill(priority: Isolate.immediate);
 
   String _isolateId;
   static FlutterIsolate _current;
